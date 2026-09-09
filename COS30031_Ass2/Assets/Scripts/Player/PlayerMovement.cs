@@ -1,0 +1,79 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+public class PlayerMovement : MonoBehaviour
+{
+    [SerializeField] private float moveSpeed = 3f;
+
+    private Rigidbody2D rb;
+    private Animator animator;
+
+    private Vector2 moveDirection;
+    private Vector2 facingDirection = new Vector2(1f, 1f);
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        float x = 0f;
+        float y = 0f;
+
+        if (Keyboard.current.aKey.isPressed)
+            x -= 1f;
+
+        if (Keyboard.current.dKey.isPressed)
+            x += 1f;
+
+        if (Keyboard.current.sKey.isPressed)
+            y -= 1f;
+
+        if (Keyboard.current.wKey.isPressed)
+            y += 1f;
+
+        Vector2 input = new Vector2(x, y);
+
+        // Actual movement: normal up/down/left/right
+        moveDirection = input.normalized;
+
+        if (input != Vector2.zero)
+        {
+            // Choose the closest available isometric facing animation
+            if (x > 0 && y >= 0)
+                facingDirection = new Vector2(1f, 1f);      // NE
+
+            else if (x < 0 && y >= 0)
+                facingDirection = new Vector2(-1f, 1f);     // NW
+
+            else if (x > 0 && y < 0)
+                facingDirection = new Vector2(1f, -1f);     // SE
+
+            else if (x < 0 && y < 0)
+                facingDirection = new Vector2(-1f, -1f);    // SW
+
+            else if (y > 0)
+                facingDirection = new Vector2(-1f, 1f);     // W -> NW
+
+            else if (y < 0)
+                facingDirection = new Vector2(1f, -1f);     // S -> SE
+
+            animator.SetFloat("MoveX", facingDirection.x);
+            animator.SetFloat("MoveY", facingDirection.y);
+
+            animator.SetFloat("LastX", facingDirection.x);
+            animator.SetFloat("LastY", facingDirection.y);
+        }
+
+        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = moveDirection * moveSpeed;
+    }
+}
