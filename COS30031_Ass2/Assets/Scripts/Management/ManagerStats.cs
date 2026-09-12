@@ -16,11 +16,13 @@ public class ManagerStats : MonoBehaviour
         {"Nature", 0}
     };
 
-    public void AlterStat(string statName, int amount){
+    public void AlterStat(string statName, int amount)
+    {
         stats[statName] = stats[statName] + amount;
     }
 
-    public int GetStat(string, statName){
-        return stats[statName]
+    public int GetStat(string statName)
+    {
+        return stats[statName];
     }
 }
