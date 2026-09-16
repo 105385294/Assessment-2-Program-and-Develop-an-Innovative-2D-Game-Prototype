@@ -4,7 +4,7 @@ using UnityEngine;
 public class ManagerStats : MonoBehaviour
 {
     //Dictionary containing all of the stats used in the game.
-    [SerializeField] private Dictionary<string, int> stats = new Dictionary<string, int>{
+    private Dictionary<string, int> stats = new Dictionary<string, int>{
         {"Running Cost", 0},
         {"Income", 0},
         {"Population", 0},
