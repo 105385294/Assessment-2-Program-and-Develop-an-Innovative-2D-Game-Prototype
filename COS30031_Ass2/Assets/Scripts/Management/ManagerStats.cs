@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ManagerStats : MonoBehaviour
 {
+    //Dictionary containing all of the stats used in the game.
     [SerializeField] private Dictionary<string, int> stats = new Dictionary<string, int>{
         {"Running Cost", 0},
         {"Income", 0},
@@ -18,11 +19,13 @@ public class ManagerStats : MonoBehaviour
 
     public void AlterStat(string statName, int amount)
     {
+        //Adds the given value to the given stat.
         stats[statName] = stats[statName] + amount;
     }
 
     public int GetStat(string statName)
     {
+        //Returns the value of the given stat.
         return stats[statName];
     }
 }
