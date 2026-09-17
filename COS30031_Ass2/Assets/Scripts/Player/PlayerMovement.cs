@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    // Surface system: reads ground modifiers without this script knowing about zones.
+    private SurfaceReceiver surfaces;
+
+    // Input-driven velocity, kept separate so external pushes stay purely additive.
+    private Vector2 currentVelocity;
+
     private Vector2 moveDirection;
     private Vector2 facingDirection = new Vector2(1f, 1f);
 
@@ -17,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        surfaces = GetComponent<SurfaceReceiver>();
     }
 
     private void Update()
@@ -74,6 +81,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = moveDirection * moveSpeed;
+        // Fall back to neutral settings if no SurfaceReceiver is attached, so the
+        // player still moves normally in scenes that have no surface zones.
+        SurfaceSettings surface = surfaces != null
+            ? surfaces.CurrentSurface
+            : SurfaceSettings.Default;
+
+        Vector2 target = moveDirection * moveSpeed * surface.speedMultiplier;
+
+        // Easing towards the target rather than snapping to it is what makes wet
+        // roads feel slippery. control = 1 reaches the target immediately, which
+        // is identical to the original behaviour.
+        currentVelocity = Vector2.Lerp(currentVelocity, target, surface.control);
+
+        Vector2 external = surfaces != null ? surfaces.ExternalVelocity : Vector2.zero;
+
+        rb.linearVelocity = currentVelocity + external;
     }
 }
