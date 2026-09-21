@@ -182,4 +182,12 @@ public class PlotInteractionUI : MonoBehaviour
             CloseMenu();
         }
     }
+    public void SelectPark()
+    {
+        if (buildingPlacer != null &&
+            buildingPlacer.BuildPark())
+        {
+            CloseMenu();
+        }
+    }
 }

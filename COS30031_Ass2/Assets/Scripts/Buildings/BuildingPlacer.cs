@@ -24,7 +24,7 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private GameObject parkA;
     [SerializeField] private GameObject parkB;
 
-    [SerializeField] private Vector2 parkOffset = Vector2.zero;
+    [SerializeField] private Vector2 parkVisualOffset = Vector2.zero;
 
     private Plot[] plots;
 
@@ -60,26 +60,20 @@ public class BuildingPlacer : MonoBehaviour
 
     public bool BuildPark()
     {
-        Plot anchor = playerInteractor.SelectedPlot;
-
-        if (anchor == null)
+        if (playerInteractor == null)
             return false;
 
-        List<Plot> footprint = GetParkFootprint(anchor);
+        Plot selectedPlot = playerInteractor.SelectedPlot;
 
-        if (footprint == null || footprint.Count != 9)
-        {
-            Debug.Log("Park requires a complete 3x3 plot area.");
+        if (selectedPlot == null)
             return false;
-        }
 
-        foreach (Plot plot in footprint)
+        List<Plot> footprint = FindAvailableParkFootprint(selectedPlot);
+
+        if (footprint == null)
         {
-            if (plot.IsOccupied)
-            {
-                Debug.Log("One or more plots are already occupied.");
-                return false;
-            }
+            Debug.Log("No available 2x2 area around this plot.");
+            return false;
         }
 
         GameObject prefab = GetFacingPrefab(parkA, parkB);
@@ -87,13 +81,13 @@ public class BuildingPlacer : MonoBehaviour
         if (prefab == null)
             return false;
 
-        Vector3 position =
-            anchor.BuildingPosition +
-            (Vector3)parkOffset;
+        Vector3 spawnPosition =
+            GetFootprintCenter(footprint) +
+            (Vector3)parkVisualOffset;
 
         GameObject buildingObject = Instantiate(
             prefab,
-            position,
+            spawnPosition,
             Quaternion.identity
         );
 
@@ -113,6 +107,9 @@ public class BuildingPlacer : MonoBehaviour
         GameObject prefabB
     )
     {
+        if (playerInteractor == null)
+            return false;
+
         Plot plot = playerInteractor.SelectedPlot;
 
         if (plot == null)
@@ -142,12 +139,9 @@ public class BuildingPlacer : MonoBehaviour
         if (building == null)
             building = buildingObject.AddComponent<Building>();
 
-        List<Plot> occupiedPlots = new List<Plot>
-        {
-            plot
-        };
-
-        building.SetOccupiedPlots(occupiedPlots);
+        building.SetOccupiedPlots(
+            new List<Plot> { plot }
+        );
 
         return true;
     }
@@ -169,40 +163,91 @@ public class BuildingPlacer : MonoBehaviour
         return prefabB;
     }
 
-    private List<Plot> GetParkFootprint(Plot anchor)
+    private List<Plot> FindAvailableParkFootprint(Plot selectedPlot)
     {
-        List<Plot> result = new List<Plot>();
+        Vector2 p = selectedPlot.transform.position;
 
-        Vector2 anchorPosition =
-            anchor.transform.position;
+        Vector2 rightUp = new Vector2(1f, 0.5f);
+        Vector2 leftUp = new Vector2(-1f, 0.5f);
+        Vector2 rightDown = new Vector2(1f, -0.5f);
+        Vector2 leftDown = new Vector2(-1f, -0.5f);
 
-        for (int x = 0; x < 3; x++)
+        List<Vector2[]> candidates = new List<Vector2[]>
         {
-            for (int y = 0; y < 3; y++)
+            new Vector2[]
             {
-                Vector2 requiredPosition =
-                    anchorPosition +
-                    new Vector2(
-                        -x + y,
-                        (x + y) * 0.5f
-                    );
+                p,
+                p + rightUp,
+                p + leftUp,
+                p + new Vector2(0f, 1f)
+            },
 
-                Plot plot =
-                    FindPlotAtPosition(requiredPosition);
+            new Vector2[]
+            {
+                p,
+                p + rightDown,
+                p + leftDown,
+                p + new Vector2(0f, -1f)
+            },
 
-                if (plot == null)
-                    return null;
+            new Vector2[]
+            {
+                p,
+                p + rightUp,
+                p + rightDown,
+                p + new Vector2(2f, 0f)
+            },
 
-                result.Add(plot);
+            new Vector2[]
+            {
+                p,
+                p + leftUp,
+                p + leftDown,
+                p + new Vector2(-2f, 0f)
             }
+        };
+
+        foreach (Vector2[] candidate in candidates)
+        {
+            List<Plot> footprint = new List<Plot>();
+
+            bool valid = true;
+
+            foreach (Vector2 position in candidate)
+            {
+                Plot plot = FindPlotAtPosition(position);
+
+                if (plot == null || plot.IsOccupied)
+                {
+                    valid = false;
+                    break;
+                }
+
+                footprint.Add(plot);
+            }
+
+            if (valid && footprint.Count == 4)
+                return footprint;
         }
 
-        return result;
+        return null;
+    }
+
+    private Vector3 GetFootprintCenter(List<Plot> footprint)
+    {
+        Vector3 total = Vector3.zero;
+
+        foreach (Plot plot in footprint)
+        {
+            total += plot.transform.position;
+        }
+
+        return total / footprint.Count;
     }
 
     private Plot FindPlotAtPosition(Vector2 position)
     {
-        const float tolerance = 0.05f;
+        const float tolerance = 0.1f;
 
         foreach (Plot plot in plots)
         {
