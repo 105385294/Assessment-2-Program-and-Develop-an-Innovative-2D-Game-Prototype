@@ -4,14 +4,20 @@ using UnityEngine;
 public class PlayerPlotInteractor : MonoBehaviour
 {
     [SerializeField] private float interactionDistance = 1f;
-    [SerializeField] private float searchRadius = 0.7f;
+    [SerializeField] private float searchRadius = 0.6f;
+    [SerializeField] private SpriteRenderer plotHighlight;
 
     private PlayerMovement playerMovement;
     private Plot selectedPlot;
 
+    public Plot SelectedPlot => selectedPlot;
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+
+        if (plotHighlight != null)
+            plotHighlight.enabled = false;
     }
 
     private void Update()
@@ -30,14 +36,11 @@ public class PlayerPlotInteractor : MonoBehaviour
         Collider2D[] colliders =
             Physics2D.OverlapCircleAll(targetPoint, searchRadius);
 
-        Plot newPlot = null;
+        Plot closestPlot = null;
         float closestDistance = Mathf.Infinity;
 
         foreach (Collider2D col in colliders)
         {
-            if (!col.CompareTag("Plot"))
-                continue;
-
             Plot plot = col.GetComponent<Plot>();
 
             if (plot == null)
@@ -52,48 +55,33 @@ public class PlayerPlotInteractor : MonoBehaviour
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                newPlot = plot;
+                closestPlot = plot;
             }
         }
 
-        if (newPlot == selectedPlot)
-            return;
+        selectedPlot = closestPlot;
 
-        if (selectedPlot != null)
+        if (selectedPlot == null)
         {
-            selectedPlot.SetSelected(false);
+            if (plotHighlight != null)
+                plotHighlight.enabled = false;
+
+            return;
         }
 
-        selectedPlot = newPlot;
-
-        if (selectedPlot != null)
+        if (plotHighlight != null)
         {
-            selectedPlot.SetSelected(true);
+            plotHighlight.enabled = true;
+            plotHighlight.transform.position =
+                selectedPlot.transform.position;
         }
     }
 
     private void OnDisable()
     {
-        if (selectedPlot != null)
-        {
-            selectedPlot.SetSelected(false);
-            selectedPlot = null;
-        }
-    }
+        selectedPlot = null;
 
-    private void OnDrawGizmosSelected()
-    {
-        PlayerMovement movement = GetComponent<PlayerMovement>();
-
-        if (movement == null)
-            return;
-
-        Vector2 facing = movement.FacingDirection.normalized;
-
-        Vector2 targetPoint =
-            (Vector2)transform.position +
-            facing * interactionDistance;
-
-        Gizmos.DrawWireSphere(targetPoint, searchRadius);
+        if (plotHighlight != null)
+            plotHighlight.enabled = false;
     }
 }
