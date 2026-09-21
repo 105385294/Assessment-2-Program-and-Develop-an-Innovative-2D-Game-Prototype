@@ -5,10 +5,14 @@ public class PlotInteractionUI : MonoBehaviour
 {
     [SerializeField] private PlayerPlotInteractor playerInteractor;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private BuildingPlacer buildingPlacer;
 
     [SerializeField] private GameObject interactionPanel;
     [SerializeField] private GameObject mainActions;
     [SerializeField] private GameObject buildMenu;
+
+    [SerializeField] private GameObject buildButton;
+    [SerializeField] private GameObject demolishButton;
 
     private bool menuOpen;
 
@@ -22,6 +26,9 @@ public class PlotInteractionUI : MonoBehaviour
 
         if (buildMenu != null)
             buildMenu.SetActive(false);
+
+        if (demolishButton != null)
+            demolishButton.SetActive(false);
     }
 
     private void Update()
@@ -46,6 +53,11 @@ public class PlotInteractionUI : MonoBehaviour
 
     public void OpenMenu()
     {
+        Plot plot = playerInteractor.SelectedPlot;
+
+        if (plot == null)
+            return;
+
         menuOpen = true;
 
         if (interactionPanel != null)
@@ -56,6 +68,12 @@ public class PlotInteractionUI : MonoBehaviour
 
         if (buildMenu != null)
             buildMenu.SetActive(false);
+
+        if (buildButton != null)
+            buildButton.SetActive(!plot.IsOccupied);
+
+        if (demolishButton != null)
+            demolishButton.SetActive(plot.IsOccupied);
 
         if (playerMovement != null)
             playerMovement.enabled = false;
@@ -96,33 +114,72 @@ public class PlotInteractionUI : MonoBehaviour
             mainActions.SetActive(true);
     }
 
+    public void DemolishSelectedBuilding()
+    {
+        Plot plot = playerInteractor.SelectedPlot;
+
+        if (plot == null)
+            return;
+
+        if (!plot.IsOccupied)
+            return;
+
+        Building building = plot.CurrentBuilding;
+
+        if (building == null)
+            return;
+
+        building.Demolish();
+
+        if (buildButton != null)
+            buildButton.SetActive(true);
+
+        if (demolishButton != null)
+            demolishButton.SetActive(false);
+    }
+
     public void SelectApartment()
     {
-        Debug.Log("Apartment selected");
+        if (buildingPlacer != null &&
+            buildingPlacer.BuildApartment())
+        {
+            CloseMenu();
+        }
     }
 
     public void SelectWarehouse()
     {
-        Debug.Log("Warehouse selected");
+        if (buildingPlacer != null &&
+            buildingPlacer.BuildWarehouse())
+        {
+            CloseMenu();
+        }
     }
 
     public void SelectOffice()
     {
-        Debug.Log("Office selected");
+        if (buildingPlacer != null &&
+            buildingPlacer.BuildOffice())
+        {
+            CloseMenu();
+        }
     }
 
     public void SelectCafe()
     {
-        Debug.Log("Cafe selected");
+        if (buildingPlacer != null &&
+            buildingPlacer.BuildCafe())
+        {
+            CloseMenu();
+        }
     }
 
     public void SelectLibrary()
     {
-        Debug.Log("Library selected");
-    }
-
-    public void SelectPark()
-    {
-        Debug.Log("Park selected");
+        if (buildingPlacer != null &&
+            buildingPlacer.BuildLibrary())
+        {
+            CloseMenu();
+        }
     }
 }
