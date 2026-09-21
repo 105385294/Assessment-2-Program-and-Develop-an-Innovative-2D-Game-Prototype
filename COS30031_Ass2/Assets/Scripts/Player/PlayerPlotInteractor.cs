@@ -3,85 +3,83 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerPlotInteractor : MonoBehaviour
 {
-    [SerializeField] private float interactionDistance = 1f;
-    [SerializeField] private float searchRadius = 0.6f;
-    [SerializeField] private SpriteRenderer plotHighlight;
+    [SerializeField] private float selectionTolerance = 0.75f;
 
     private PlayerMovement playerMovement;
+    private Plot[] plots;
     private Plot selectedPlot;
 
     public Plot SelectedPlot => selectedPlot;
 
-    private void Awake()
+    private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-
-        if (plotHighlight != null)
-            plotHighlight.enabled = false;
+        plots = FindObjectsByType<Plot>(FindObjectsSortMode.None);
     }
 
     private void Update()
     {
-        UpdateSelectedPlot();
-    }
-
-    private void UpdateSelectedPlot()
-    {
-        Vector2 facing = playerMovement.FacingDirection.normalized;
-
-        Vector2 targetPoint =
+        Vector2 targetPosition =
             (Vector2)transform.position +
-            facing * interactionDistance;
+            GetFacingOffset();
 
-        Collider2D[] colliders =
-            Physics2D.OverlapCircleAll(targetPoint, searchRadius);
-
-        Plot closestPlot = null;
+        Plot newPlot = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (Collider2D col in colliders)
+        foreach (Plot plot in plots)
         {
-            Plot plot = col.GetComponent<Plot>();
-
             if (plot == null)
                 continue;
 
-            float distance =
-                Vector2.Distance(
-                    targetPoint,
-                    plot.transform.position
-                );
+            float distance = Vector2.Distance(
+                targetPosition,
+                plot.transform.position
+            );
 
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                closestPlot = plot;
+                newPlot = plot;
             }
         }
 
-        selectedPlot = closestPlot;
+        if (closestDistance > selectionTolerance)
+            newPlot = null;
 
-        if (selectedPlot == null)
-        {
-            if (plotHighlight != null)
-                plotHighlight.enabled = false;
-
+        if (newPlot == selectedPlot)
             return;
-        }
 
-        if (plotHighlight != null)
-        {
-            plotHighlight.enabled = true;
-            plotHighlight.transform.position =
-                selectedPlot.transform.position;
-        }
+        if (selectedPlot != null)
+            selectedPlot.SetHighlighted(false);
+
+        selectedPlot = newPlot;
+
+        if (selectedPlot != null)
+            selectedPlot.SetHighlighted(true);
+    }
+
+    private Vector2 GetFacingOffset()
+    {
+        Vector2 facing = playerMovement.FacingDirection;
+
+        if (facing.x < 0 && facing.y > 0)
+            return new Vector2(-1f, 0.5f);
+
+        if (facing.x > 0 && facing.y > 0)
+            return new Vector2(1f, 0.5f);
+
+        if (facing.x > 0 && facing.y < 0)
+            return new Vector2(1f, -0.5f);
+
+        return new Vector2(-1f, -0.5f);
     }
 
     private void OnDisable()
     {
-        selectedPlot = null;
-
-        if (plotHighlight != null)
-            plotHighlight.enabled = false;
+        if (selectedPlot != null)
+        {
+            selectedPlot.SetHighlighted(false);
+            selectedPlot = null;
+        }
     }
 }

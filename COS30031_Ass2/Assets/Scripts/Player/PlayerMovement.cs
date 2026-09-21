@@ -42,23 +42,18 @@ public class PlayerMovement : MonoBehaviour
             y += 1f;
 
         Vector2 input = new Vector2(x, y);
-
         moveDirection = input.normalized;
 
         if (input != Vector2.zero)
         {
-            if (x > 0 && y >= 0)
-                facingDirection = new Vector2(1f, 1f);
-            else if (x < 0 && y >= 0)
-                facingDirection = new Vector2(-1f, 1f);
-            else if (x > 0 && y < 0)
-                facingDirection = new Vector2(1f, -1f);
-            else if (x < 0 && y < 0)
-                facingDirection = new Vector2(-1f, -1f);
-            else if (y > 0)
+            if (y > 0)
                 facingDirection = new Vector2(-1f, 1f);
             else if (y < 0)
                 facingDirection = new Vector2(1f, -1f);
+            else if (x > 0)
+                facingDirection = new Vector2(1f, 1f);
+            else if (x < 0)
+                facingDirection = new Vector2(-1f, -1f);
 
             animator.SetFloat("MoveX", facingDirection.x);
             animator.SetFloat("MoveY", facingDirection.y);
