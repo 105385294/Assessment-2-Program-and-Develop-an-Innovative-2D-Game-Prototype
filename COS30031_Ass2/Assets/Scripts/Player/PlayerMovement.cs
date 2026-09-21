@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveDirection;
 
     private Vector2 facingDirection = new Vector2(1f, 1f);
-
+    public Vector2 FacingDirection => facingDirection;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
