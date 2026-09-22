@@ -5,7 +5,6 @@ public class Plot : MonoBehaviour
     [SerializeField] private Vector2 buildingOffset = Vector2.zero;
 
     private SpriteRenderer spriteRenderer;
-    private PolygonCollider2D plotCollider;
 
     private bool occupied;
     private Building currentBuilding;
@@ -19,12 +18,8 @@ public class Plot : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        plotCollider = GetComponent<PolygonCollider2D>();
 
         SetHighlighted(false);
-
-        if (!occupied && plotCollider != null)
-            plotCollider.isTrigger = true;
     }
 
     public void SetHighlighted(bool highlighted)
@@ -41,17 +36,11 @@ public class Plot : MonoBehaviour
     {
         occupied = true;
         currentBuilding = building;
-
-        if (plotCollider != null)
-            plotCollider.isTrigger = false;
     }
 
     public void ClearBuilding()
     {
         occupied = false;
         currentBuilding = null;
-
-        if (plotCollider != null)
-            plotCollider.isTrigger = true;
     }
 }

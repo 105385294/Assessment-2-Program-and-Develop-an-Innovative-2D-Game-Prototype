@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5465226692886236384}
   - component: {fileID: 523597797445831155}
   - component: {fileID: -1438304336199958647}
+  - component: {fileID: 4462188392054901023}
   m_Layer: 0
   m_Name: park-a
   m_TagString: Untagged
@@ -102,3 +103,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseOrder: 1000
   precision: 100
+  sortingOffsetY: 0
+--- !u!68 &4462188392054901023
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6343377552739382610}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.14102638, y: 0.032093525}
+  - {x: -0.8444376, y: -0.32684326}
+  - {x: -0.34962845, y: -0.49743605}
+  - {x: 0.2076335, y: -0.59936666}
+  - {x: 0.45433474, y: -0.4677}
+  - {x: 0.87661934, y: -0.277318}
+  - {x: 0.35641015, y: -0.02406931}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

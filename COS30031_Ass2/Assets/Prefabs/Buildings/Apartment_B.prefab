@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6469243273219998335}
   - component: {fileID: 5401680049353058044}
   - component: {fileID: 377921251686626957}
+  - component: {fileID: 902776968473067847}
   m_Layer: 0
   m_Name: Apartment_B
   m_TagString: Untagged
@@ -102,3 +103,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseOrder: 1000
   precision: 100
+  sortingOffsetY: 0
+--- !u!60 &902776968473067847
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659547178113546424}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.19}
+    newSize: {x: 2.56, y: 2.19}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.3436066, y: -0.33376145}
+      - {x: -0.08453554, y: -0.4201731}
+      - {x: 0.08296903, y: -0.40611118}
+      - {x: 0.43797815, y: -0.23235887}
+      - {x: 0.2340802, y: -0.054344118}
+      - {x: 0.29438984, y: -0.26510906}
+      - {x: 0.07703096, y: -0.18463492}
+      - {x: -0.009380713, y: -0.3393166}
+      - {x: -0.08346093, y: -0.24667555}
+  m_UseDelaunayMesh: 0
