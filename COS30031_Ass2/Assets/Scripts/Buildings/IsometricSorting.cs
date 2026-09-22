@@ -5,6 +5,7 @@ public class IsometricSorting : MonoBehaviour
 {
     [SerializeField] private int baseOrder = 1000;
     [SerializeField] private int precision = 100;
+    [SerializeField] private float sortingOffsetY = 0f;
 
     private SpriteRenderer spriteRenderer;
 
@@ -21,7 +22,11 @@ public class IsometricSorting : MonoBehaviour
 
     private void UpdateSortingOrder()
     {
+        float sortingY =
+            transform.position.y + sortingOffsetY;
+
         spriteRenderer.sortingOrder =
-            baseOrder - Mathf.RoundToInt(transform.position.y * precision);
+            baseOrder -
+            Mathf.RoundToInt(sortingY * precision);
     }
 }
