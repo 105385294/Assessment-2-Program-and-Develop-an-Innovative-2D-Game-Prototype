@@ -17,10 +17,18 @@ public class ManagerStats : MonoBehaviour
         {"Nature", 0}
     };
 
+    [SerializeField] private int population = 0;
+
+    public void Awake()
+    {
+        stats["Running Cost"] = population;
+    }
+
     public void AlterStat(string statName, int amount)
     {
         //Adds the given value to the given stat.
         stats[statName] = stats[statName] + amount;
+        print(statName + " was altered by " + amount);
     }
 
     public int GetStat(string statName)

@@ -1,3 +1,5 @@
+//Stat additions by Ben Pridham on 23/09/2026
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,34 +29,59 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private Vector2 parkVisualOffset = Vector2.zero;
 
     private Plot[] plots;
+    [SerializeField] private ManagerStats stats;
 
     private void Awake()
     {
         plots = FindObjectsByType<Plot>(FindObjectsSortMode.None);
+        stats = GetComponent<ManagerStats>();
+
     }
 
     public bool BuildApartment()
     {
+        stats.AlterStat("Running Cost", 2000);
+        stats.AlterStat("Housed", 50);
+        stats.AlterStat("Electricity Consumption", 2000);
+
         return BuildSinglePlot(apartmentA, apartmentB);
     }
 
     public bool BuildWarehouse()
     {
+        stats.AlterStat("Employed", 15);
+        stats.AlterStat("Electricity Production", 10000);
+        stats.AlterStat("Running Cost", 1000);
+        stats.AlterStat("Income", 500);
+
         return BuildSinglePlot(warehouseA, warehouseB);
     }
 
     public bool BuildOffice()
     {
+        stats.AlterStat("Employed", 30);
+        stats.AlterStat("Income", 1000);
+        stats.AlterStat("Running Cost", 1500);
+
         return BuildSinglePlot(officeA, officeB);
     }
 
     public bool BuildCafe()
     {
+        stats.AlterStat("Fed", 60);
+        stats.AlterStat("Employed", 20);
+        stats.AlterStat("Running Cost", 750);
+        stats.AlterStat("Income", 750);
+
         return BuildSinglePlot(cafeA, cafeB);
     }
 
     public bool BuildLibrary()
     {
+        stats.AlterStat("Mental Health", 45);
+        stats.AlterStat("Employed", 10);
+        stats.AlterStat("Running Cost", 3000);
+
         return BuildSinglePlot(libraryA, libraryB);
     }
 
@@ -98,6 +125,12 @@ public class BuildingPlacer : MonoBehaviour
             building = buildingObject.AddComponent<Building>();
 
         building.SetOccupiedPlots(footprint);
+        
+        stats.AlterStat("Running Cost", 4500);
+        stats.AlterStat("Employed", 10);
+        stats.AlterStat("Nature", 50);
+        stats.AlterStat("Mental Health", 20);
+        stats.AlterStat("Income", 250);
 
         return true;
     }
