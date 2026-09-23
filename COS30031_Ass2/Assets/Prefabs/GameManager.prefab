@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1958188323334818877}
   - component: {fileID: 2253310708662291208}
   - component: {fileID: 6537438829032971252}
+  - component: {fileID: 1293963570466371342}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,3 +59,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plots: []
+--- !u!114 &1293963570466371342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843724269972413514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d660d49d9c2bd4263b1fd68dda6f99b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInteractor: {fileID: 0}
+  playerMovement: {fileID: 0}
+  apartmentA: {fileID: 4192583707853954865, guid: fe3ad036355fd40f38714e177b1c7531, type: 3}
+  apartmentB: {fileID: 7659547178113546424, guid: 6a59d635b267943daa660f7bcdfeb416, type: 3}
+  warehouseA: {fileID: 1332274857609618075, guid: f958e7d5bf6c149c0a333ed99d2cedce, type: 3}
+  warehouseB: {fileID: 1203742048231881388, guid: 4c71534c9dda14787a29057767f942c0, type: 3}
+  officeA: {fileID: 4042160950276093819, guid: 1e1d49260801a4928a045e1cfdbe861f, type: 3}
+  officeB: {fileID: 1140067571111563926, guid: d7845e8642ba5478db701f73de87903a, type: 3}
+  cafeA: {fileID: 4861795276883875181, guid: f41c0aaf3fa824a66967472948a2e06f, type: 3}
+  cafeB: {fileID: 3537730901788213564, guid: 3a79d634c023a4bc39dd91fa384681fd, type: 3}
+  libraryA: {fileID: 4427573637911691407, guid: b2fcfc6e4672d4680ada10b6928bbe49, type: 3}
+  libraryB: {fileID: 55135857543725095, guid: d7786c983b2f44a69ae062bd15caba40, type: 3}
+  parkA: {fileID: 6343377552739382610, guid: dfbb5acd1c7b94c4586d45f18cb6b954, type: 3}
+  parkB: {fileID: 3315120976740446594, guid: efda93d830346428ba0db8221bee90f3, type: 3}
+  parkVisualOffset: {x: 0, y: 0.6}

@@ -9,14 +9,19 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private SurfaceReceiver surfaces;
 
+    private Vector2 currentVelocity;
     private Vector2 moveDirection;
     private Vector2 facingDirection = new Vector2(1f, 1f);
+
+    public Vector2 FacingDirection => facingDirection;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        surfaces = GetComponent<SurfaceReceiver>();
     }
 
     private void Update()
@@ -37,34 +42,21 @@ public class PlayerMovement : MonoBehaviour
             y += 1f;
 
         Vector2 input = new Vector2(x, y);
-
-        // Actual movement: normal up/down/left/right
         moveDirection = input.normalized;
 
         if (input != Vector2.zero)
         {
-            // Choose the closest available isometric facing animation
-            if (x > 0 && y >= 0)
-                facingDirection = new Vector2(1f, 1f);      // NE
-
-            else if (x < 0 && y >= 0)
-                facingDirection = new Vector2(-1f, 1f);     // NW
-
-            else if (x > 0 && y < 0)
-                facingDirection = new Vector2(1f, -1f);     // SE
-
-            else if (x < 0 && y < 0)
-                facingDirection = new Vector2(-1f, -1f);    // SW
-
-            else if (y > 0)
-                facingDirection = new Vector2(-1f, 1f);     // W -> NW
-
+            if (y > 0)
+                facingDirection = new Vector2(-1f, 1f);
             else if (y < 0)
-                facingDirection = new Vector2(1f, -1f);     // S -> SE
+                facingDirection = new Vector2(1f, -1f);
+            else if (x > 0)
+                facingDirection = new Vector2(1f, 1f);
+            else if (x < 0)
+                facingDirection = new Vector2(-1f, -1f);
 
             animator.SetFloat("MoveX", facingDirection.x);
             animator.SetFloat("MoveY", facingDirection.y);
-
             animator.SetFloat("LastX", facingDirection.x);
             animator.SetFloat("LastY", facingDirection.y);
         }
@@ -74,6 +66,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = moveDirection * moveSpeed;
+        SurfaceSettings surface = surfaces != null
+            ? surfaces.CurrentSurface
+            : SurfaceSettings.Default;
+
+        Vector2 target =
+            moveDirection *
+            moveSpeed *
+            surface.speedMultiplier;
+
+        currentVelocity = Vector2.Lerp(
+            currentVelocity,
+            target,
+            surface.control
+        );
+
+        Vector2 external = surfaces != null
+            ? surfaces.ExternalVelocity
+            : Vector2.zero;
+
+        rb.linearVelocity = currentVelocity + external;
+    }
+
+    private void OnDisable()
+    {
+        moveDirection = Vector2.zero;
+        currentVelocity = Vector2.zero;
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        if (animator != null)
+            animator.SetFloat("Speed", 0f);
     }
 }
