@@ -19,10 +19,12 @@ public class ManagerStats : MonoBehaviour
     };
 
     [SerializeField] private int population = 0;
+    [SerializeField] private ManagerComplete complete;
 
     public void Awake()
     {
         stats["Running Cost"] = population;
+        complete = GetComponent<ManagerComplete>();
     }
 
     public void ChangeStatByBuilding(string buildingType, int posNeg)
@@ -64,6 +66,7 @@ public class ManagerStats : MonoBehaviour
                 AlterStat("Mental Health", 20 * posNeg);
                 break;
         }
+        complete.CheckComplete();
     }
 
     private void AlterStat(string statName, int amount)
