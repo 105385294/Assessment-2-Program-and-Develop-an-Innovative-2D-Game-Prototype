@@ -23,8 +23,6 @@ public class ManagerMap : MonoBehaviour
                 plots.Add(child.gameObject);
             }
         }
-
-        print(CheckPlacement(plots[1], 3, 2));
     }
 
     public bool CheckPlacement(GameObject chosenTile, int length, int width)
