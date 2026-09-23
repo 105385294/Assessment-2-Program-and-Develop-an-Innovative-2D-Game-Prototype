@@ -1,3 +1,5 @@
+//Stat additions by Ben Pridham on 23/09/2026
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -129,7 +131,7 @@ public class PlotInteractionUI : MonoBehaviour
         if (building == null)
             return;
 
-        building.Demolish();
+        building.Demolish(plot.building_type);
 
         if (buildButton != null)
             buildButton.SetActive(true);

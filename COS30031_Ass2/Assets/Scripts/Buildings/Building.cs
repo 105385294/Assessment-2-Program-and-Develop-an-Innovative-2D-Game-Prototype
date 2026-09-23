@@ -1,3 +1,5 @@
+//Stat additions by Ben Pridham on 23/09/2026
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +9,7 @@ public class Building : MonoBehaviour
 
     public IReadOnlyList<Plot> OccupiedPlots => occupiedPlots;
 
-    public void SetOccupiedPlots(List<Plot> plots)
+    public void SetOccupiedPlots(List<Plot> plots, string buildingType)
     {
         occupiedPlots.Clear();
         occupiedPlots.AddRange(plots);
@@ -17,15 +19,19 @@ public class Building : MonoBehaviour
             if (plot != null)
                 plot.Occupy(this);
         }
+
+        GameObject.FindWithTag("GameController").GetComponent<ManagerStats>().ChangeStatByBuilding(buildingType, 1);
     }
 
-    public void Demolish()
+    public void Demolish(string buildingType)
     {
         foreach (Plot plot in occupiedPlots)
         {
             if (plot != null)
                 plot.ClearBuilding();
         }
+
+        GameObject.FindWithTag("GameController").GetComponent<ManagerStats>().ChangeStatByBuilding(buildingType, -1);
 
         occupiedPlots.Clear();
 

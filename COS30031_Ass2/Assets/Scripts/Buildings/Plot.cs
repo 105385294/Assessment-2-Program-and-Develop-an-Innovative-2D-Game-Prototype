@@ -3,6 +3,7 @@ using UnityEngine;
 public class Plot : MonoBehaviour
 {
     [SerializeField] private Vector2 buildingOffset = Vector2.zero;
+    [SerializeField] public string building_type = "Empty";
 
     private SpriteRenderer spriteRenderer;
 
