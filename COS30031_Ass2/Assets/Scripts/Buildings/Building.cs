@@ -25,14 +25,14 @@ public class Building : MonoBehaviour
 
     public void Demolish(string buildingType)
     {
+        GameObject.FindWithTag("GameController").GetComponent<ManagerStats>().ChangeStatByBuilding(buildingType, -1);
+
         foreach (Plot plot in occupiedPlots)
         {
             if (plot != null)
                 plot.ClearBuilding();
         }
-
-        GameObject.FindWithTag("GameController").GetComponent<ManagerStats>().ChangeStatByBuilding(buildingType, -1);
-
+        
         occupiedPlots.Clear();
 
         Destroy(gameObject);
