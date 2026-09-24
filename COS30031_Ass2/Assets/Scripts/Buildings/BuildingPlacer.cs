@@ -80,6 +80,11 @@ public class BuildingPlacer : MonoBehaviour
             Debug.Log("No available 2x2 area around this plot.");
             return false;
         }
+        
+        foreach (Plot plot in footprint)
+        {
+            plot.building_type = "Park";
+        }
 
         GameObject prefab = GetFacingPrefab(parkA, parkB);
 

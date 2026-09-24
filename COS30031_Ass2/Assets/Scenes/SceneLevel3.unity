@@ -30180,6 +30180,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1999469658485426919, guid: 7180f48d964c76841b6797f2076be6b9, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 5811476131228108403}
     - target: {fileID: 3258315702853548743, guid: 7180f48d964c76841b6797f2076be6b9, type: 3}
       propertyPath: stats
       value: 
@@ -30201,11 +30205,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7180f48d964c76841b6797f2076be6b9, type: 3}
---- !u!224 &1825707480 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1525599670700060758, guid: 7180f48d964c76841b6797f2076be6b9, type: 3}
-  m_PrefabInstance: {fileID: 1825707479}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844941121
 GameObject:
   m_ObjectHideFlags: 0
@@ -31519,9 +31518,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4683375432913835432, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1825707480}
     - targetCorrespondingSourceObject: {fileID: 4683375432913835432, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
       insertIndex: -1
       addedObject: {fileID: 911651434}
@@ -44712,6 +44708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1843724269972413514, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
     - target: {fileID: 1958188323334818877, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -44756,14 +44756,17 @@ PrefabInstance:
     - {fileID: 6537438829032971252, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1843724269972413514, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5811476131228108405}
   m_SourcePrefab: {fileID: 100100000, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
 --- !u!114 &5811476131228108402 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1293963570466371342, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
   m_PrefabInstance: {fileID: 5811476131228108401}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5811476131228108404}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d660d49d9c2bd4263b1fd68dda6f99b1, type: 3}
@@ -44774,12 +44777,38 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2253310708662291208, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
   m_PrefabInstance: {fileID: 5811476131228108401}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5811476131228108404}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 590e77648bf1eea4aa6803be80838ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5811476131228108404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1843724269972413514, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
+  m_PrefabInstance: {fileID: 5811476131228108401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5811476131228108405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811476131228108404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb4d90c231111041a5c0d9c929efcb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target_cost: -1
+  target_income: -1
+  target_housed: -1
+  target_employed: -1
+  target_fed: -1
+  target_health: -1
+  target_e_prod: -1
+  target_e_cons: -1
+  target_nature: -1
 --- !u!1 &5833436391947578376
 GameObject:
   m_ObjectHideFlags: 0
@@ -56369,3 +56398,4 @@ SceneRoots:
   - {fileID: 5811476131228108401}
   - {fileID: 1922560683}
   - {fileID: 739764926}
+  - {fileID: 1825707479}
