@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4245464355768819128}
   - component: {fileID: 1776374931793870434}
   - component: {fileID: -2485619186522557649}
+  - component: {fileID: 1450143436928813709}
+  - component: {fileID: 3516712301217941516}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -204,3 +206,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impulseDecay: 14
+--- !u!114 &1450143436928813709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7475856797686574402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f1e6289ca9a4ab8bf52aedc2b0fe87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionTolerance: 0.75
+--- !u!114 &3516712301217941516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7475856797686574402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5dd2d66fabec42dbb575329b8bf5348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseOrder: 1000
+  precision: 100
+  sortingOffsetY: 0
