@@ -23,7 +23,7 @@ public class ManagerStats : MonoBehaviour
 
     public void Awake()
     {
-        stats["Running Cost"] = population;
+        stats["Population"] = population;
         complete = GetComponent<ManagerComplete>();
     }
 

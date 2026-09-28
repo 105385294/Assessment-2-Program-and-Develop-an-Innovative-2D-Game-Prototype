@@ -16567,6 +16567,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 355064597455515239, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_Text
+      value: 'Housed >= Population
+
+        Fed > 0
+
+        E. Production > E. Consumption'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441708338818768467, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 950
+      objectReference: {fileID: 0}
     - target: {fileID: 4409443750235768323, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
       propertyPath: buildingPlacer
       value: 
