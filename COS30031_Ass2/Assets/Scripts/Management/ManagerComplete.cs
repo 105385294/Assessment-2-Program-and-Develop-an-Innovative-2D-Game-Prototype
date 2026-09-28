@@ -15,10 +15,35 @@ public class ManagerComplete : MonoBehaviour
     [SerializeField] private int target_nature = -1;
     
     private ManagerStats stats;
+    private bool level_completed = false;
+    private GameObject[] confetti;
+    private float time_of_completion;
+    private bool celebrated = false;
 
     private void Awake()
     {
         stats = GetComponent<ManagerStats>();
+        confetti = GameObject.FindGameObjectsWithTag("Confetti");
+        foreach (GameObject confetto in confetti)
+        {
+            confetto.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        //Checks if enouhg time has passed to disable confetti cannons
+        if (!celebrated && level_completed)
+        {
+            if (Time.time - time_of_completion > 5)
+            {
+                foreach (GameObject confetto in confetti)
+                {
+                    confetto.SetActive(false);
+                    celebrated = true;
+                }
+            }
+        }
     }
 
     public void CheckComplete()
@@ -115,6 +140,16 @@ public class ManagerComplete : MonoBehaviour
 
     private void CompleteLevel()
     {
-        print("The requirements for this level have been met! Well done.");
+        //Fire confetti when level has been completed for the first time.
+        if (!level_completed)
+        {
+            level_completed = true;
+            foreach (GameObject confetto in confetti)
+            {
+                confetto.SetActive(true);
+            }
+
+            time_of_completion = Time.time;
+        }
     }
 }
