@@ -14961,7 +14961,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -14987,12 +14987,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813073912}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -15}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1883648142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &813073916
 MonoBehaviour:
@@ -21244,7 +21244,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4592736481169267400, guid: 349bdc96da387ff4d820a30412709e1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 813073915}
+    - targetCorrespondingSourceObject: {fileID: 4592736481169267400, guid: 349bdc96da387ff4d820a30412709e1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1863782265}
+    - targetCorrespondingSourceObject: {fileID: 4592736481169267400, guid: 349bdc96da387ff4d820a30412709e1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2002738728}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 349bdc96da387ff4d820a30412709e1d, type: 3}
 --- !u!114 &1194614412 stripped
@@ -33676,7 +33685,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 60
+        scalar: 100
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -37519,11 +37528,11 @@ Transform:
   m_GameObject: {fileID: 1863782262}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6830127, y: 0.1830127, z: -0.1830127, w: 0.6830127}
-  m_LocalPosition: {x: -20, y: -10, z: 0}
+  m_LocalPosition: {x: -20, y: -10, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1883648142}
   m_LocalEulerAnglesHint: {x: -60, y: 90, z: -90}
 --- !u!1 &1870013852
 GameObject:
@@ -37668,6 +37677,11 @@ PolygonCollider2D:
       - {x: 1, y: 0.109375}
       - {x: 0.09375, y: 0.5}
   m_UseDelaunayMesh: 0
+--- !u!4 &1883648142 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4592736481169267400, guid: 349bdc96da387ff4d820a30412709e1d, type: 3}
+  m_PrefabInstance: {fileID: 1194614411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1886444912
 GameObject:
   m_ObjectHideFlags: 0
@@ -40470,7 +40484,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 60
+        scalar: 100
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -44313,11 +44327,11 @@ Transform:
   m_GameObject: {fileID: 2002738725}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6830127, y: -0.18301275, z: 0.18301275, w: 0.6830127}
-  m_LocalPosition: {x: 20, y: -10, z: 0}
+  m_LocalPosition: {x: 20, y: -10, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1883648142}
   m_LocalEulerAnglesHint: {x: -120, y: 90, z: -90}
 --- !u!1 &2008942146
 GameObject:
@@ -64042,7 +64056,6 @@ PolygonCollider2D:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 813073915}
   - {fileID: 548038809}
   - {fileID: 2018876182}
   - {fileID: 8634116920920465052}
@@ -64051,5 +64064,3 @@ SceneRoots:
   - {fileID: 5811476131228108401}
   - {fileID: 1922560683}
   - {fileID: 739764926}
-  - {fileID: 1863782265}
-  - {fileID: 2002738728}
