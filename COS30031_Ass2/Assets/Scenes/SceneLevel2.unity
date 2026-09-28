@@ -4818,6 +4818,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2253310708662291208, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
+      propertyPath: population
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6537438829032971252, guid: e4aa54e83dce1104e8284f58da901eff, type: 3}
     m_RemovedGameObjects: []
@@ -12377,7 +12381,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 1000
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -18946,7 +18950,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 1000
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -38424,13 +38428,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target_cost: -1
   target_income: -1
-  target_housed: -1
-  target_employed: -1
-  target_fed: -1
-  target_health: -1
+  target_housed: 201
+  target_employed: 201
+  target_fed: 201
+  target_health: 201
   target_e_prod: -1
   target_e_cons: -1
   target_nature: -1
+  check_dollars: 1
+  check_power: 1
 --- !u!1 &2104490739
 GameObject:
   m_ObjectHideFlags: 0

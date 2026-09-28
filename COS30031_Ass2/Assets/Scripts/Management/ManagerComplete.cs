@@ -4,15 +4,13 @@ using UnityEngine;
 public class ManagerComplete : MonoBehaviour
 {
     //Values can be edited in the inspector. Values set to -1 will be ignored during completion check.
-    [SerializeField] private int target_cost = -1;
-    [SerializeField] private int target_income = -1;
     [SerializeField] private int target_housed = -1;
     [SerializeField] private int target_employed = -1;
     [SerializeField] private int target_fed = -1;
     [SerializeField] private int target_health = -1;
-    [SerializeField] private int target_e_prod = -1;
-    [SerializeField] private int target_e_cons = -1;
     [SerializeField] private int target_nature = -1;
+    [SerializeField] private bool check_dollars = false;
+    [SerializeField] private bool check_power = false;
     
     private ManagerStats stats;
     private bool level_completed = false;
@@ -51,19 +49,11 @@ public class ManagerComplete : MonoBehaviour
         //Checks if all of the requirements for the level have been completed.
         bool complete = true;
 
-        if (target_cost != -1)
+        if (check_dollars)
         {
             int running_cost = stats.GetStat("Running Cost");
-            if (running_cost > target_cost)
-            {
-                complete = false;
-            }
-        }
-
-        if (target_income != -1)
-        {
             int income = stats.GetStat("Income");
-            if (income < target_income)
+            if (running_cost > income || income == 0)
             {
                 complete = false;
             }
@@ -105,19 +95,11 @@ public class ManagerComplete : MonoBehaviour
             }
         }
 
-        if (target_e_prod != -1)
+        if (check_power)
         {
             int e_prod = stats.GetStat("Electricity Production");
-            if (e_prod < target_e_prod)
-            {
-                complete = false;
-            }
-        }
-
-        if (target_e_cons != -1)
-        {
             int e_cons = stats.GetStat("Electricity Consumption");
-            if (e_cons > target_e_cons)
+            if (e_cons > e_prod || e_prod <= 0)
             {
                 complete = false;
             }
