@@ -21467,8 +21467,44 @@ PrefabInstance:
         E. Production > E. Consumption'
       objectReference: {fileID: 0}
     - target: {fileID: 2441708338818768467, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441708338818768467, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441708338818768467, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441708338818768467, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 655
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441708338818768467, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 950
+      value: 467
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250559059981060042, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250559059981060042, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250559059981060042, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250559059981060042, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -730
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250559059981060042, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 4409443750235768323, guid: 755ac24b062aa402f93005885a6bbc61, type: 3}
       propertyPath: buildingPlacer
