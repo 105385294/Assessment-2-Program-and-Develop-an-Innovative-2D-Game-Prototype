@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.77874684, g: 0.9196353, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1269,36 +1269,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099536972}
   m_CullTransparentMesh: 1
---- !u!114 &190109906731561663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489423022686859144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &452914747532099472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1442,7 +1412,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8509804, g: 0.9019608, b: 0.9490196, a: 1}
     m_HighlightedColor: {r: 0.91764706, g: 0.9490196, b: 0.972549, a: 1}
     m_PressedColor: {r: 0.48420256, g: 0.6863972, b: 0.8773585, a: 1}
-    m_SelectedColor: {r: 0.59180313, g: 0.8513435, b: 0.8773585, a: 1}
+    m_SelectedColor: {r: 0.4, g: 0.8039216, b: 0.9137255, a: 1}
     m_DisabledColor: {r: 0.8156863, g: 0.8156863, b: 0.8156863, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1484,8 +1454,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7052134386986977521}
   - component: {fileID: 5585799349614711319}
-  - component: {fileID: 190109906731561663}
   - component: {fileID: 7052134386986977522}
+  - component: {fileID: 7052134386986977523}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -1645,8 +1615,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1786,7 +1756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.77874684, g: 0.9196353, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1938,7 +1908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.77874684, g: 0.9196353, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2002,7 +1972,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8509804, g: 0.9019608, b: 0.9490196, a: 1}
     m_HighlightedColor: {r: 0.91764706, g: 0.9490196, b: 0.972549, a: 1}
     m_PressedColor: {r: 0.48235294, g: 0.6862745, b: 0.8784314, a: 1}
-    m_SelectedColor: {r: 0.5921569, g: 0.8509804, b: 0.8784314, a: 1}
+    m_SelectedColor: {r: 0.4, g: 0.8039216, b: 0.9137255, a: 1}
     m_DisabledColor: {r: 0.8156863, g: 0.8156863, b: 0.8156863, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2080,7 +2050,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8509804, g: 0.9019608, b: 0.9490196, a: 1}
     m_HighlightedColor: {r: 0.91764706, g: 0.9490196, b: 0.972549, a: 1}
     m_PressedColor: {r: 0.48235294, g: 0.6862745, b: 0.8784314, a: 1}
-    m_SelectedColor: {r: 0.5921569, g: 0.8509804, b: 0.8784314, a: 1}
+    m_SelectedColor: {r: 0.4, g: 0.8039216, b: 0.9137255, a: 1}
     m_DisabledColor: {r: 0.8156863, g: 0.8156863, b: 0.8156863, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2193,6 +2163,33 @@ MonoBehaviour:
   - {fileID: 5499856338715193476}
   - {fileID: 161367957}
   - {fileID: 246489330}
+--- !u!114 &7052134386986977523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489423022686859144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: c371d2b362b9187418ce5f795019318b, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!224 &7227896319995014777
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2281,7 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.77874684, g: 0.9196353, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
