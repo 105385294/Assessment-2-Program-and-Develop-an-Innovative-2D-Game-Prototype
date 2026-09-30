@@ -48,19 +48,19 @@ MonoBehaviour:
   debrisTypes:
   - label: Concrete
     material: {fileID: 6200000, guid: af7e73abae3d85b4a91f8652306692fe, type: 2}
-    color: {r: 0.6039216, g: 0.6039216, b: 0.5764706, a: 0}
+    color: {r: 0.6039216, g: 0.6039216, b: 0.5764706, a: 1}
     mass: 2
   - label: Glass
     material: {fileID: 6200000, guid: 63c0fdf18cf054c49b1406b2421f50c3, type: 2}
-    color: {r: 0.56078434, g: 0.83137256, b: 0.9098039, a: 0}
+    color: {r: 0.56078434, g: 0.83137256, b: 0.9098039, a: 1}
     mass: 0.5
   - label: Wood
     material: {fileID: 6200000, guid: 8fc913e331b21924e84a352c466b445f, type: 2}
-    color: {r: 0.6117647, g: 0.41960785, b: 0.24705882, a: 0}
+    color: {r: 0.6117647, g: 0.41960785, b: 0.24705882, a: 1}
     mass: 1
   - label: Metal
     material: {fileID: 6200000, guid: 642572cc8feb8d64f9e6dafb021feef5, type: 2}
-    color: {r: 0.7882353, g: 0.81960785, b: 0.8509804, a: 0}
+    color: {r: 0.7882353, g: 0.81960785, b: 0.8509804, a: 1}
     mass: 1.5
   minPieces: 8
   maxPieces: 12
@@ -73,6 +73,7 @@ MonoBehaviour:
   floorLayerName: DebrisFloor
   floorOffset: 0.5
   floorWidth: 6
+  floorThickness: 4
   blastRadius: 2.5
   blastForce: 6
   playerMask:

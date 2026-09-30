@@ -57,6 +57,8 @@ public class DebrisSpawner : MonoBehaviour
     [Tooltip("Distance below the origin where debris lands (the base of the building).")]
     [SerializeField] private float floorOffset = 0.5f;
     [SerializeField] private float floorWidth = 6f;
+    [Tooltip("A thin floor can be tunnelled through by fast pieces, so keep this well above the debris size.")]
+    [SerializeField] private float floorThickness = 4f;
 
     [Header("Player push")]
     [SerializeField] private float blastRadius = 2.5f;
@@ -133,10 +135,16 @@ public class DebrisSpawner : MonoBehaviour
 
         GameObject floor = new GameObject("DebrisFloor (temp)");
         floor.layer = layer;
-        floor.transform.position = origin + Vector2.down * floorOffset;
+
+        // The landing surface is the TOP face of the box, so the box centre sits
+        // half a thickness lower. A thick box cannot be tunnelled through.
+        float surfaceY = origin.y - floorOffset;
+        floor.transform.position = new Vector2(origin.x, surfaceY - floorThickness * 0.5f);
 
         BoxCollider2D box = floor.AddComponent<BoxCollider2D>();
-        box.size = new Vector2(floorWidth, 0.2f);
+        box.size = new Vector2(floorWidth, floorThickness);
+
+        Debug.Log($"Debris floor created at y={surfaceY:F2}, debris spawned at y={origin.y:F2}");
 
         Destroy(floor, lifetime);
     }

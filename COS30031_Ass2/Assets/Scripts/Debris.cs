@@ -60,6 +60,9 @@ public class Debris : MonoBehaviour
         rb.mass = mass;
         rb.gravityScale = gravityScale;
 
+        // A colour picked in the Inspector can easily be left with alpha 0, which
+        // would make the piece invisible. Debris is always drawn fully opaque.
+        color.a = 1f;
         baseColor = color;
         sr.color = color;
 
