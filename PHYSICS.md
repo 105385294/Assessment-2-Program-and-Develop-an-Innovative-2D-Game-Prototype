@@ -16,12 +16,20 @@ so the difference between them is visible during play.
 
 | Material | Friction | Bounciness | Behaviour on landing |
 |---|---|---|---|
-| Concrete | _(fill in)_ | _(fill in)_ | Drops and stops almost immediately |
-| Glass | _(fill in)_ | _(fill in)_ | Slides the furthest across the ground |
-| Wood | _(fill in)_ | _(fill in)_ | Bounces a few times, then rolls |
-| Metal | _(fill in)_ | _(fill in)_ | Bounces highest and settles last |
+| Concrete | 0.8 | 0.05 | Drops and stops almost immediately |
+| Glass | 0.05 | 0.15 | Slides the furthest across the ground |
+| Wood | 0.45 | 0.4 | Bounces a few times, then rolls |
+| Metal | 0.25 | 0.8 | Bounces highest and settles last |
 
-> Fill the two numeric columns from the Inspector values of each asset before submitting.
+The values are spread along two axes rather than one. Friction runs from 0.05 to 0.8, so
+glass keeps sliding where concrete grips; bounciness runs from 0.05 to 0.8, so metal keeps
+its energy where concrete absorbs it. Wood sits in the middle of both, which is why it
+bounces and then rolls.
+
+All four use **Friction Combine: Mean** and **Bounce Combine: Maximum**. When two surfaces
+touch, the engine has to reconcile their values: averaging friction keeps the contrast
+between a sliding and a gripping material, while taking the maximum bounciness means a
+bouncy piece still bounces off a surface that isn't bouncy itself.
 
 Every debris piece is launched with the same speed range regardless of which material
 it uses, because the launch impulse is multiplied by the piece's mass. Differences seen
@@ -37,12 +45,15 @@ The Layer Collision Matrix is configured deliberately rather than left at the de
 
 - `Surface` only interacts with `Player`. Surface zones are triggers that read the
   player's position; they must not block debris or buildings.
-- `Debris` collides with `DebrisFloor` and `Boundary`, but not with `Surface`. Debris
-  should land and stay inside the map without being slowed down by water zones.
-- `DebrisFloor` collides with `Debris` alone. It is an internal helper and must never
-  block the player.
+- `Debris` collides with `DebrisFloor`, `Boundary` and `Building`, so pieces land, stay
+  inside the island and bounce off buildings still standing nearby.
+- `Debris` does **not** collide with `Player`. Debris is feedback, not a hazard — pieces
+  should never shove the player around or trap them. The blast push is applied
+  deliberately through code instead, so its strength is controlled.
 - `Debris` does not collide with other debris, which keeps a burst cheap and stops
   pieces from jamming against each other.
+- `DebrisFloor` collides with `Debris` alone. It is an internal helper and must never
+  block the player.
 
 Turning pairs off is as much a design decision as turning them on: each disabled pair
 is a collision test the engine no longer runs every frame.
