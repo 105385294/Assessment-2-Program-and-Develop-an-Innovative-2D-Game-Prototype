@@ -23,13 +23,12 @@ public class ManagerStats : MonoBehaviour
 
     public void Awake()
     {
-        stats["Running Cost"] = population;
+        stats["Population"] = population;
         complete = GetComponent<ManagerComplete>();
     }
 
     public void ChangeStatByBuilding(string buildingType, int posNeg)
     {
-        print("Attempted stat change");
         //Pick which stats should be changed based on the type of building and whether it's being built or demolished.
         switch (buildingType)
         {
@@ -61,14 +60,12 @@ public class ManagerStats : MonoBehaviour
                 AlterStat("Running Cost", 3000 * posNeg);
                 break;
             case "Park":
-                print("Park selected");
                 AlterStat("Running Cost", 4500 * posNeg);
                 AlterStat("Employed", 10 * posNeg);
                 AlterStat("Nature", 50 * posNeg);
                 AlterStat("Mental Health", 20 * posNeg);
                 break;
             default:
-                print("No building type found.");
                 break;
         }
         complete.CheckComplete();

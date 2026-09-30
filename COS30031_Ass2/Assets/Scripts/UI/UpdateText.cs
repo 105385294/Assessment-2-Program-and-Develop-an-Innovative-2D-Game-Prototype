@@ -8,6 +8,10 @@ public class UpdateText : MonoBehaviour
     public ManagerStats stats;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        stats = GameObject.FindWithTag("GameController").GetComponent<ManagerStats>();
+    }
     // Update is called once per frame
     
     void Update()
