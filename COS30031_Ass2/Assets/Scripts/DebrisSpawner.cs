@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -68,6 +69,51 @@ public class DebrisSpawner : MonoBehaviour
     [Header("Testing (turn off before release)")]
     [SerializeField] private bool enableTestKey = true;
 
+    // Lets other systems (the demolish flow) trigger debris without holding a reference.
+    private static DebrisSpawner instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    /// <summary>
+    /// Spawns debris at a world position from anywhere. Returns false when the
+    /// current scene has no DebrisSpawner, so callers never need a null check.
+    /// buildingType picks the materials that suit that building; an unknown or
+    /// empty type falls back to all four materials.
+    /// </summary>
+    public static bool ExplodeAt(Vector2 origin, string buildingType = null)
+    {
+        if (instance == null)
+            instance = FindFirstObjectByType<DebrisSpawner>();
+
+        if (instance == null)
+            return false;
+
+        instance.Explode(origin, buildingType);
+        return true;
+    }
+
+    /// <summary>
+    /// Which materials each kind of building breaks into. A warehouse is a metal
+    /// shed, a park is mostly timber and stone, and so on, so a demolition looks
+    /// like the building that was there rather than a generic pile of rubble.
+    /// </summary>
+    private static string[] MaterialsFor(string buildingType)
+    {
+        switch (buildingType)
+        {
+            case "Apartment": return new[] { "Concrete", "Glass", "Wood" };
+            case "Office":    return new[] { "Concrete", "Glass", "Metal" };
+            case "Warehouse": return new[] { "Metal", "Concrete" };
+            case "Cafe":      return new[] { "Wood", "Glass", "Metal" };
+            case "Library":   return new[] { "Concrete", "Wood", "Glass" };
+            case "Park":      return new[] { "Wood", "Concrete" };
+            default:          return null;
+        }
+    }
+
     private void Update()
     {
         if (!enableTestKey) return;
@@ -84,9 +130,17 @@ public class DebrisSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawns a burst of debris at the given world position.
+    /// Spawns a burst of debris at the given world position, using every material.
     /// </summary>
     public void Explode(Vector2 origin)
+    {
+        Explode(origin, null);
+    }
+
+    /// <summary>
+    /// Spawns a burst of debris made of the materials that suit buildingType.
+    /// </summary>
+    public void Explode(Vector2 origin, string buildingType)
     {
         if (debrisPrefab == null || debrisTypes == null || debrisTypes.Length == 0)
         {
@@ -94,14 +148,16 @@ public class DebrisSpawner : MonoBehaviour
             return;
         }
 
+        DebrisType[] palette = SelectPalette(buildingType);
+
         float debrisLifetime = debrisPrefab.Lifetime;
         CreateFloor(origin, debrisLifetime + 0.5f);
 
         int count = Random.Range(minPieces, maxPieces + 1);
         for (int i = 0; i < count; i++)
         {
-            // Round-robin so every material appears in every explosion.
-            DebrisType type = debrisTypes[i % debrisTypes.Length];
+            // Round-robin so every material of the palette appears in every explosion.
+            DebrisType type = palette[i % palette.Length];
 
             Vector2 pos = origin + Random.insideUnitCircle * spawnJitter;
             Quaternion rot = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
@@ -119,6 +175,37 @@ public class DebrisSpawner : MonoBehaviour
         }
 
         PushPlayer(origin);
+    }
+
+    /// <summary>
+    /// Returns the debris types that match a building, or all of them when the
+    /// building is unknown or none of its materials are set up on this spawner.
+    /// </summary>
+    private DebrisType[] SelectPalette(string buildingType)
+    {
+        string[] wanted = MaterialsFor(buildingType);
+
+        if (wanted == null)
+            return debrisTypes;
+
+        List<DebrisType> selected = new List<DebrisType>();
+
+        foreach (DebrisType type in debrisTypes)
+        {
+            foreach (string label in wanted)
+            {
+                if (type.label == label)
+                {
+                    selected.Add(type);
+                    break;
+                }
+            }
+        }
+
+        if (selected.Count == 0)
+            return debrisTypes;
+
+        return selected.ToArray();
     }
 
     /// <summary>
@@ -143,8 +230,6 @@ public class DebrisSpawner : MonoBehaviour
 
         BoxCollider2D box = floor.AddComponent<BoxCollider2D>();
         box.size = new Vector2(floorWidth, floorThickness);
-
-        Debug.Log($"Debris floor created at y={surfaceY:F2}, debris spawned at y={origin.y:F2}");
 
         Destroy(floor, lifetime);
     }

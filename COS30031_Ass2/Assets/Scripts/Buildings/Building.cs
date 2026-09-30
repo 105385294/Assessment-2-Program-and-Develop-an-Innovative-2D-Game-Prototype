@@ -1,4 +1,5 @@
 //Stat additions by Ben Pridham on 23/09/2026
+//Debris hook on demolition added by Nho Anh Khoa Nguyen on 30/09/2026
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,11 @@ public class Building : MonoBehaviour
         }
         
         occupiedPlots.Clear();
+
+        // Spawn physics debris at the building position before it disappears.
+        // The building type decides which materials it breaks into.
+        // Safe to call in every scene: it does nothing if no DebrisSpawner is present.
+        DebrisSpawner.ExplodeAt(transform.position, buildingType);
 
         Destroy(gameObject);
     }

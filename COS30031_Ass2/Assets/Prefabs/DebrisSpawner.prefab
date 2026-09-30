@@ -79,4 +79,4 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  enableTestKey: 1
+  enableTestKey: 0
