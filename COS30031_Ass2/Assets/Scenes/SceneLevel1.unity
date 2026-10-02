@@ -23528,7 +23528,7 @@ MonoBehaviour:
   target_health: -1
   target_nature: -1
   check_dollars: 0
-  check_power: 0
+  check_power: 1
 --- !u!1 &1774959337
 GameObject:
   m_ObjectHideFlags: 0

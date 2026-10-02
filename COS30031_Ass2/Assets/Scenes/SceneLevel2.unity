@@ -39454,10 +39454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb4d90c231111041a5c0d9c929efcb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target_housed: 201
-  target_employed: 201
-  target_fed: 201
-  target_health: 201
+  target_housed: 200
+  target_employed: 200
+  target_fed: 200
+  target_health: 200
   target_nature: -1
   check_dollars: 1
   check_power: 1

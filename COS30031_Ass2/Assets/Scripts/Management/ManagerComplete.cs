@@ -55,6 +55,7 @@ public class ManagerComplete : MonoBehaviour
             int income = stats.GetStat("Income");
             if (running_cost > income || income == 0)
             {
+                print("Running cost is greater than income");
                 complete = false;
             }
         }
@@ -64,6 +65,7 @@ public class ManagerComplete : MonoBehaviour
             int housed = stats.GetStat("Housed");
             if (housed < target_housed)
             {
+                print("Housed is below threshold");
                 complete = false;
             }
         }
@@ -73,6 +75,7 @@ public class ManagerComplete : MonoBehaviour
             int employed = stats.GetStat("Employed");
             if (employed < target_employed)
             {
+                print("Employed is below threshold");
                 complete = false;
             }
         }
@@ -82,6 +85,7 @@ public class ManagerComplete : MonoBehaviour
             int fed = stats.GetStat("Fed");
             if (fed < target_fed)
             {
+                print("Fed is below threshold");
                 complete = false;
             }
         }
@@ -89,8 +93,9 @@ public class ManagerComplete : MonoBehaviour
         if (target_health != -1)
         {
             int health = stats.GetStat("Mental Health");
-            if (health > target_health)
+            if (health < target_health)
             {
+                print("Mental Health is below threshold");
                 complete = false;
             }
         }
@@ -101,6 +106,7 @@ public class ManagerComplete : MonoBehaviour
             int e_cons = stats.GetStat("Electricity Consumption");
             if (e_cons > e_prod || e_prod <= 0)
             {
+                print("Electricity consumption is greater than electricity production");
                 complete = false;
             }
         }
@@ -110,6 +116,7 @@ public class ManagerComplete : MonoBehaviour
             int nature = stats.GetStat("Nature");
             if (nature < target_nature)
             {
+                print("Nature is below threshold");
                 complete = false;
             }
         }
@@ -122,6 +129,7 @@ public class ManagerComplete : MonoBehaviour
 
     private void CompleteLevel()
     {
+        print("Level Complete");
         //Fire confetti when level has been completed for the first time.
         if (!level_completed)
         {

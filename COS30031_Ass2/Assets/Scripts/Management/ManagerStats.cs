@@ -33,34 +33,37 @@ public class ManagerStats : MonoBehaviour
         switch (buildingType)
         {
             case "Apartment":
-                AlterStat("Running Cost", 2000 * posNeg);
+                AlterStat("Running Cost", 1000 * posNeg);
                 AlterStat("Housed", 50 * posNeg);
-                AlterStat("Electricity Consumption", 2000 * posNeg);
+                AlterStat("Electricity Consumption", 1000 * posNeg);
                 break;
             case "Warehouse":
                 AlterStat("Employed", 15 * posNeg);
                 AlterStat("Electricity Production", 10000 * posNeg);
-                AlterStat("Running Cost", 1000 * posNeg);
+                AlterStat("Running Cost", 500 * posNeg);
                 AlterStat("Income", 500 * posNeg);
                 break;
             case "Office":
                 AlterStat("Employed", 30 * posNeg);
-                AlterStat("Income", 1000 * posNeg);
-                AlterStat("Running Cost", 1500 * posNeg);
+                AlterStat("Income", 2000 * posNeg);
+                AlterStat("Running Cost", 750 * posNeg);
+                AlterStat("Electricity Consumption", 750 * posNeg);
                 break;
             case "Cafe":
                 AlterStat("Fed", 60 * posNeg);
                 AlterStat("Employed", 20 * posNeg);
-                AlterStat("Running Cost", 750 * posNeg);
+                AlterStat("Running Cost", 325 * posNeg);
                 AlterStat("Income", 750 * posNeg);
+                AlterStat("Electricity Consumption", 450 * posNeg);
                 break;
             case "Library":
                 AlterStat("Mental Health", 45 * posNeg);
                 AlterStat("Employed", 10 * posNeg);
-                AlterStat("Running Cost", 3000 * posNeg);
+                AlterStat("Running Cost", 1500 * posNeg);
+                AlterStat("Electricity Consumption", 650 * posNeg);
                 break;
             case "Park":
-                AlterStat("Running Cost", 4500 * posNeg);
+                AlterStat("Running Cost", 2250 * posNeg);
                 AlterStat("Employed", 10 * posNeg);
                 AlterStat("Nature", 50 * posNeg);
                 AlterStat("Mental Health", 20 * posNeg);
